@@ -1,0 +1,24 @@
+Property Name	Type	Description
+$ref	<class 'str'>	desc
+data_description	string	Brief description of the data being provided for this study. Free text
+study_description	string	A brief description of the study being performed. Free text
+study_setup	dict	A high level description of the setup used to achieve the study objectives.
+type_of_data	dict	Is the data raw or processed?
+exclude_from_aggregations	boolean	Should the study be excluded from aggregations (e.g., Counts of total numbers of studies or total numbers of subjects) for users who are not authorized to access this study?
+study_registration	string	External source from which the identifier included in study_id originates.
+study_id	string	Unique identifier that can be used to retrieve more information for a study.
+dbgap_accession	string	The dbgap accession number provided for the project (example, phs123456.v1.p1.c1).
+dbgap_phs	string	The dbGaP phs accession (example, phs123456).
+dbgap_version	string	The dbGaP version (example, v1).
+dbgap_participant_set	string	The dbGaP participant set (example, p1).
+dbgap_consent	string	The dbGaP consent number (example, c1).
+dbgap_consent_text	string	The dbGaP consent text (example, HMB-IRB).
+authz	array	"The authz string (example, [""/programs/Program.name/projects/Project.code""] )."
+short_name	string	The shorthand name for the project.
+full_name	string	The full name for the project.
+projects	dict	desc
+id	system_prop	
+project_id	system_prop	
+created_datetime	system_prop	
+updated_datetime	system_prop	
+state	system_prop	
