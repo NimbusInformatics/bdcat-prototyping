@@ -2,6 +2,10 @@ import requests
 import yaml
 import pandas as pd
 import sys
+import argparse
+
+# URL for the LinkML schema file
+linkml_schema_url = "https://raw.githubusercontent.com/bfurner/bdchm/eace35242e686da61e8e4c4198639fd8dadae408/src/bdchm/schema/bdchm.yaml"
 
 def fetch_and_parse_linkml_schema(url):
     # Fetch the content of the LinkML schema file
@@ -58,17 +62,28 @@ def main(url, table_name):
     attributes_df = pd.DataFrame(attributes_table, columns=['Attribute Name', 'Type', 'Description'])
 
     # Output the DataFrame to a TSV file
-    output_file = f'{table_name}_attributes.tsv'
+    output_file = f'outputs/dmc_{table_name}_attributes.tsv'
     attributes_df.to_csv(output_file, sep='\t', index=False)
 
     print(f"Attributes table for '{table_name}' has been written to {output_file}")
 
+
 if __name__ == "__main__":
-    # URL for the LinkML schema file
-    linkml_schema_url = "https://raw.githubusercontent.com/bfurner/bdchm/eace35242e686da61e8e4c4198639fd8dadae408/src/bdchm/schema/bdchm.yaml"
+ 
+    # Create an argument parser
+    parser = argparse.ArgumentParser(description='Extract attributes from a LinkML data model schema.')
 
-    # Table name to extract attributes from
-    table_name = "ResearchStudy"
+    # Add the table name argument
+    parser.add_argument('--entity', type=str, help='Name of the table to extract attributes from')
 
+    # Parse the command line arguments
+    args = parser.parse_args()
+
+    # Extract the table name from the parsed arguments
+    table_name = args.entity
+
+    # Run the main function
     main(linkml_schema_url, table_name)
+
+
 
